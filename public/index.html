@@ -1,65 +1,88 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.6.2/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.6.2/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.6.2/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.6.2/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.6.2/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulario</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+<body>
+  <!-- Forma de procesamiento.
+ 
+    id="vista"
+    nombre de esta forma dentro del documento. Se puede usar directamente desde
+    EcmaScript. Ningún otro element en este documento puede tener el mismo id.
+    -->
+  <form id="vista">
+    <!-- Encabezado de la página. -->
+    <h1>Formulario</h1>
+    <p>
+      <!-- Campo de captura de texto. Atributos:
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        type="text"
+        Indica que el campo input sirve para capturar texto en general.
 
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+        id="nombre" 
+        nombre del campo de texto dentro de este documento.
+ 
+        required
+        el campo debe tener un valor antes de hacer submit; de lo contrario se
+        maa un error el submit se cancela.
+ 
+        placeholder="Nombre"
+        Texto conocido como sello de agua. Cuando el elemento no tiene valor,
+        se muestra el valor de placeholder. Cuando sí tiene valor, el sello de
+        agua se quita y se pone el valor del elemento. -->
+      <input type="text" id="nombre" required placeholder="Nombre">
+    </p>
+    <p>
+      <!-- botón con el texto "Saludar". Sirve para activar la forma.
+ 
+        type="submit"
+        Indica que la activación del botón, activa la forma. -->
+      <button type="submit">Saludar</button>
+    </p>
+    <footer>Copyright &copy; 2019 Gilberto Pacheco Gallegos.</footer>
+  </form>
+  <!-- Incorpora el script controlador a la página. -->
+  <script type="module">
+    //@ts-check
+    /* Todos los element de HTML reciben eventos, tales como un clic, la
+     * presión de una tecla, el movimiento del ratón sobre ellos, etc. Los
+     * event listener son funciones que se invocan cuando alguno de ellos
+     * sucede.
+     * El método addEventListener de un element, asocia un evento, como
+     * "click" (hacer clic en un element) o "input" (presionar una tecla) con
+     * una función event listener. En este caso, se declara que la funcion
+     * "saluda" se invoque cuando se genere el evento "submit" en la form con
+     * name="vista".
+     * El evento submit es la activación de la forma y se genera cuando
+     * se cliquea o se presiona la tecla de espacio sobre un element de
+     * type="submit" dentro de la forma, o cuando se teclea enter con el
+     * foco dentro de un componente de captura de texto dentro de la forma. */
+    // @ts-ignore
+    vista.addEventListener("submit", saluda);
+    /** Muestra un saludo.
+     * @param {Event} evt objeto que describe el evento. */
+    function saluda(evt) {
+
+      /* El evento "submit" carga este mismo archivo desde internet. En este
+       * ejemplo lo que se desea es procesar sin recargar. Para evitar el
+       * comportamiento predeterminado, se usa el método "preventDefault". */
+      evt.preventDefault();
+
+      /* Se evalúa la expresión nombre.value que está dentro del delimitador
+       * ${ }, para posteriormente sustituirlo dentro de la cadena.
+       * El resultado se deja en la variable "respuesta".
+       * EL TEXTO DE LA CADENA EMPIEZA Y TERMINA CON EL ACENTO INVERTIDO. */
+      // @ts-ignore
+      const respuesta = `Saludos a ${nombre.value}.`;
+      // Muestra la respuesta en un cuadro de diálogo de alerta.
+      alert(respuesta);
+    }
+  </script>
+</body>
+
 </html>
